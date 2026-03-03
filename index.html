@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бухгалтерские услуги | Иван Петров</title>
+    <!-- Подключаем красивый шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Подключаем иконки Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f6fa;
+            color: #1e2b37;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, #0b3954, #0a4c6e);
+            color: white;
+            padding: 60px 0 40px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .avatar {
+            width: 180px;
+            height: 180px;
+            background-color: #ffffff20;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid white;
+            overflow: hidden; /* Чтобы картинка не вылезала за круг */
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Картинка заполнит круг */
+        }
+        /* Заглушка, если нет фото */
+        .avatar-placeholder {
+            font-size: 5rem;
+            color: white;
+        }
+        .header-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .header-text p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .badge {
+            background-color: #ffc107;
+            color: #1e2b37;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        /* Основные секции */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #0b3954;
+            font-weight: 600;
+            border-left: 6px solid #0b3954;
+            padding-left: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .service-item {
+            background: #f8faff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.2s;
+            border: 1px solid #e0e7f0;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,59,113,0.1);
+        }
+        .service-item i {
+            font-size: 2.5rem;
+            color: #0b3954;
+            margin-bottom: 15px;
+        }
+        .service-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        .service-item p {
+            color: #4a5a6a;
+        }
+        /* Преимущества */
+        .advantages-list {
+            list-style: none;
+        }
+        .advantages-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .advantages-list i {
+            color: #28a745;
+            font-size: 1.3rem;
+            width: 25px;
+        }
+        /* Контакты */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #0b3954;
+            width: 30px;
+            text-align: center;
+        }
+        .contact-item a {
+            color: #1e2b37;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            color: #0b3954;
+            text-decoration: underline;
+        }
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background-color: #0b3954;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background-color: #0f4c6b;
+        }
+        /* Футер */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #6c7a8a;
+            border-top: 1px solid #d0dbe8;
+            margin-top: 40px;
+        }
+        /* Адаптация под телефон */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-text h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка профиля -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="avatar">
+                    <!-- ЗДЕСЬ ВСТАВЬ ССЫЛКУ НА ФОТО ОТЦА (или замени на иконку) -->
+                    <img src="https://via.placeholder.com/180/0b3954/ffffff?text=ИП" alt="Фото">
+                    <!-- Если хочешь иконку, замени строчку выше на: <i class="fas fa-user-tie avatar-placeholder"></i> -->
+                </div>
+                <div class="header-text">
+                    <h1>Иван Петров</h1>
+                    <p>Бухгалтер с 15-летним опытом</p>
+                    <span class="badge"><i class="fas fa-check-circle"></i> Главный бухгалтер / Налоговый консультант</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Услуги -->
+        <section class="card">
+            <h2 class="section-title">Что я делаю</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Бухгалтерское сопровождение</h3>
+                    <p>Полное ведение учета для ООО и ИП. Подготовка и сдача отчетности.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Налоговая оптимизация</h3>
+                    <p>Помогу законно снизить налоги. Выбор системы налогообложения.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-people-arrows"></i>
+                    <h3>Кадровый учет</h3>
+                    <p>Расчет зарплаты, больничных, отпусков. Кадровое делопроизводство.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Консультации</h3>
+                    <p>Ответы на любые вопросы по налогам и бухгалтерии. Аудит.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section class="card">
+            <h2 class="section-title">Почему выбирают меня</h2>
+            <ul class="advantages-list">
+                <li><i class="fas fa-check-circle"></i> <strong>Работаю на результат:</strong> Ваш бизнес под защитой.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Без штрафов и пеней:</strong> Гарантия правильной отчетности.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Удаленно и в офисе:</strong> Встречусь лично или буду на связи 24/7.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Прозрачные цены:</strong> Фиксированная стоимость или абонемент.</li>
+            </ul>
+        </section>
+
+        <!-- Контакты -->
+        <section class="card" id="contact">
+            <h2 class="section-title">Свяжитесь со мной</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span><a href="tel:+79991234567">+7 (999) 123-45-67</a></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span><a href="https://wa.me/79991234567">Написать в WhatsApp</a></span>
+                </div>
+                <div class="contact-item">
+                    <i class="far fa-envelope"></i>
+                    <span><a href="mailto:buh@petrov.ru">buh@petrov.ru</a></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>г. Москва, ул. Бухгалтерская, д. 1 (офис 101)</span>
+                </div>
+            </div>
+            <!-- Кнопка для быстрой связи -->
+            <a href="tel:+79991234567" class="btn"><i class="fas fa-phone"></i> Позвонить сейчас</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Иван Петров — Бухгалтерские услуги. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
